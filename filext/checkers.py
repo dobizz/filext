@@ -34,3 +34,17 @@ def is_pdf(file: Union[str, bytes]) -> bool:
     data = get_bytes(file)
     header = b"\x25\x50\x44\x46"
     return validate_header(data, header)
+
+
+def is_png(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
+    trailer = b"\x49\x45\x4E\x44\xAE\x42\x60\x82"
+    return validate_header(data, header) and validate_trailer(data, trailer)
+
+
+def is_jpg(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"\xFF\xD8\xFF"
+    trailer = b"\xFF\xD9"
+    return validate_header(data, header) and validate_trailer(data, trailer)
