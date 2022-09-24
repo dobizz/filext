@@ -7,7 +7,6 @@ setuptools.setup(
     url="https://github.com/dobizz/filex",
     author="Ronnie Villanueva",
     author_email="ronnie.code@outlook.com",
-    license="MIT",
     packages=setuptools.find_packages(),
     zip_safe=False,
     classifiers=[
