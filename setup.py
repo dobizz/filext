@@ -1,9 +1,25 @@
+import io
+import os
+
 import setuptools
+
+# Import the README and use it as the long-description.
+try:
+    with io.open(
+        os.path.join(os.path.abspath(os.path.dirname(__file__)), "README.md"),
+        encoding="utf-8",
+    ) as f:
+        long_description = "\n" + f.read()
+except FileNotFoundError:
+    long_description = ""
+
 
 setuptools.setup(
     name="filex",
     version="0.1.0",
     description="Python library to identify file type based on its file signature",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/dobizz/filex",
     author="Ronnie Villanueva",
     author_email="ronnie.code@outlook.com",
