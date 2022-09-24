@@ -1,6 +1,6 @@
 import pytest
 
-from filex import checkers
+from filext import checkers
 
 
 @pytest.mark.parametrize(

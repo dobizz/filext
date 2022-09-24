@@ -1,6 +1,6 @@
 from typing import Union
 
-from filex.utils import get_bytes, validate_header, validate_trailer
+from filext.utils import get_bytes, validate_header, validate_trailer
 
 
 def is_microsoft_openxml(file: Union[str, bytes]) -> bool:

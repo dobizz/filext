@@ -15,12 +15,12 @@ except FileNotFoundError:
 
 
 setuptools.setup(
-    name="filex",
+    name="filext",
     version="0.1.0",
     description="Python library to identify file type based on its file signature",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/dobizz/filex",
+    url="https://github.com/dobizz/filext",
     author="Ronnie Villanueva",
     author_email="ronnie.code@outlook.com",
     packages=setuptools.find_packages(),
