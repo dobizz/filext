@@ -33,12 +33,12 @@ def test_document_checkers_invalid(filepath, checker):
 @pytest.mark.parametrize(
     "filepath, checker",
     [
-        # ("tests/files/image.bmp", checkers.is_bmp),
-        # ("tests/files/image.gif", checkers.is_gif),
-        # ("tests/files/image.heic", checkers.is_heic),
+        ("tests/files/image.bmp", checkers.is_bmp),
+        ("tests/files/image.gif", checkers.is_gif),
+        ("tests/files/image.heic", checkers.is_heic),
         ("tests/files/image.jpg", checkers.is_jpg),
         ("tests/files/image.png", checkers.is_png),
-        # ("tests/files/image.tif", checkers.is_tif),
+        ("tests/files/image.tif", checkers.is_tif),
     ],
 )
 def test_image_checkers_valid(filepath, checker):

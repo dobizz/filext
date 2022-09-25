@@ -13,7 +13,7 @@ def get_bytes(file: Union[str, bytes]) -> bytes:
 
 
 def validate_header(data: bytes, header: bytes, offset: int = 0) -> bool:
-    return data[offset : len(header)] == header
+    return data[offset : len(header) + offset] == header
 
 
 def validate_trailer(data: bytes, trailer: bytes, offset: int = 0) -> bool:

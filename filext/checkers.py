@@ -48,3 +48,29 @@ def is_jpg(file: Union[str, bytes]) -> bool:
     header = b"\xFF\xD8\xFF"
     trailer = b"\xFF\xD9"
     return validate_header(data, header) and validate_trailer(data, trailer)
+
+
+def is_gif(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header1 = b"\x47\x49\x46\x38\x37\x61"
+    header2 = b"\x47\x49\x46\x38\x39\x61"
+    return validate_header(data, header1) or validate_header(data, header2)
+
+
+def is_bmp(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"\x42\x4D"
+    return validate_header(data, header)
+
+
+def is_tif(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"\x49\x49\x2A\x00"
+    return validate_header(data, header)
+
+
+def is_heic(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"ftypheic"
+    offset = 4
+    return validate_header(data, header, offset)
