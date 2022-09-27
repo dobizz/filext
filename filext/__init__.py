@@ -39,6 +39,9 @@ def whatdoc(file: Union[str, bytes]) -> Union[str, None]:
         "pptx": is_pptx,
         "xlsx": is_xlsx,
         "pdf": is_pdf,
+        "doc": is_doc,
+        "xls": is_xls,
+        "ppt": is_ppt,
     }
     return lookup_file_type(file, file_types)
 
