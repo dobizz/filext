@@ -10,7 +10,9 @@ from filext import classifiers
         ("tests/files/document.pptx", classifiers.is_pptx),
         ("tests/files/document.xlsx", classifiers.is_xlsx),
         ("tests/files/document.pdf", classifiers.is_pdf),
-        ("tests/files/document.pdf", classifiers.is_pdf),
+        ("tests/files/document.doc", classifiers.is_doc),
+        ("tests/files/document.ppt", classifiers.is_ppt),
+        ("tests/files/document.xls", classifiers.is_xls),
     ],
 )
 def test_document_checkers_valid(filepath, checker):
@@ -43,3 +45,11 @@ def test_document_checkers_invalid(filepath, checker):
 )
 def test_image_checkers_valid(filepath, checker):
     assert checker(filepath)
+
+
+def test_microsoft_openxml(all_ms_openxml_files):
+    assert classifiers.is_microsoft_openxml(all_ms_openxml_files)
+
+
+def test_compound_file_binary_format(all_cfbf_files):
+    assert classifiers.is_compound_file_binary_format(all_cfbf_files)

@@ -15,14 +15,66 @@ def is_microsoft_openxml(file: Union[str, bytes]) -> bool:
     )
 
 
+def is_compound_file_binary_format(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
+    header_offset = 0
+
+    return validate_header(data, header, header_offset)
+
+
+def is_doc(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header = b"\xEC\xA5\xC1\x00"
+    header_offset = 512
+    return is_compound_file_binary_format(data) and validate_header(
+        data, header, header_offset
+    )
+
+
 def is_docx(file: Union[str, bytes]) -> bool:
     data = get_bytes(file)
     return is_microsoft_openxml(data) and b"word/document.xml" in data
 
 
+def is_xls(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header1 = b"\xFD\xFF\xFF\xFFnn\x00"
+    header2 = b"\xFD\xFF\xFF\xFFnn\x02"
+    header3 = b"\x09\x08\x10\x00\x00\x06\x05\x00"
+    header_offset = 512
+    return is_compound_file_binary_format(data) and any(
+        (
+            validate_header(data, header1, header_offset),
+            validate_header(data, header2, header_offset),
+            validate_header(data, header3, header_offset),
+        )
+    )
+
+
 def is_xlsx(file: Union[str, bytes]) -> bool:
     data = get_bytes(file)
     return is_microsoft_openxml(data) and b"xl/workbook.xml" in data
+
+
+def is_ppt(file: Union[str, bytes]) -> bool:
+    data = get_bytes(file)
+    header1 = b"\xA0\x46\x1D\xF0"
+    header2 = b"\x00\x6E\x1E\xF0"
+    header3 = b"\x0F\x00\xE8\x03"
+    header4 = b"\xFD\xFF\xFF\xFFnnnn\x00\x00"
+    file_signature1 = b"\x50\x00\x6F\x00\x77\x00\x65\x00\x72\x00\x50\x00\x6F\x00\x69\x00\x6E\x00\x74\x00\x20\x00\x44\x00\x6F\x00\x63\x00\x75\x00\x6D\x00\x65\x00\x6E\x00\x74\x00"
+    file_signature2 = b"\x5F\xC0\x91\xE3"
+    header_offset = 512
+    return is_compound_file_binary_format(data) and any(
+        (
+            validate_header(data, header1, header_offset),
+            validate_header(data, header2, header_offset),
+            validate_header(data, header3, header_offset),
+            validate_header(data, header4, header_offset),
+            (file_signature1 in data and file_signature2 in data),
+        )
+    )
 
 
 def is_pptx(file: Union[str, bytes]) -> bool:
