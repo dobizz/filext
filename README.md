@@ -39,9 +39,9 @@ with open(filepath, "rb") as file:
 ### Supported File Types
 #### Documents
 - [x] PDF
-- [ ] DOC
-- [ ] PPT
-- [ ] XLS
+- [x] DOC
+- [x] PPT
+- [x] XLS
 - [x] DOCX
 - [x] PPTX
 - [x] XLSX

@@ -16,7 +16,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="filext",
-    version="0.2.1",
+    version="0.2.2",
     description="Python library to identify file type based on its file signature",
     long_description=long_description,
     long_description_content_type="text/markdown",
