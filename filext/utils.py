@@ -1,8 +1,9 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 from typing import Callable, Dict, Union
 
 
-def get_bytes(file: Union[str, bytes]) -> bytes:
+def get_bytes(file: Union[str, bytes, Path]) -> bytes:
     """
     Returns the raw bytes of a given file.
 
@@ -20,6 +21,8 @@ def get_bytes(file: Union[str, bytes]) -> bytes:
             file_bytes = fh.read()
     elif isinstance(file, bytes):
         file_bytes = file
+    elif isinstance(file, Path):
+        file_bytes = file.read_bytes()
     else:
         raise TypeError
     return file_bytes
