@@ -34,4 +34,7 @@ jobs:
           args: check
       - name: Test with pytest
         run: |
-          pytest
+          coverage run -m pytest
+      - name: Show coverage report
+        run: |
+          coverage report -mi --fail-under=${{ vars.COVERAGE_FAIL_UNDER}}
