@@ -30,6 +30,8 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with ruff
         uses: astral-sh/ruff-action@v3
+        with:
+          args: check
       - name: Test with pytest
         run: |
           pytest
