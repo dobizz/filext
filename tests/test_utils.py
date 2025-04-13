@@ -1,9 +1,14 @@
+from pathlib import Path
+
 import pytest
 
 from filext.utils import get_bytes
 
 
-@pytest.mark.parametrize("file", ["tests/files/image.png"])
+@pytest.mark.parametrize(
+    "file",
+    ["tests/files/image.png", Path("tests/files/image.png")],
+)
 def test_get_bytes_valid(file):
     assert isinstance(get_bytes(file), bytes)
 

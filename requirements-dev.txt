@@ -1,0 +1,6 @@
+-r requirements.txt
+commitizen
+coverage
+pre-commit
+pytest
+ruff
