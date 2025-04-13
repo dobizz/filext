@@ -3,3 +3,4 @@ commitizen
 coverage
 pre-commit
 pytest
+ruff
